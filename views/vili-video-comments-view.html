@@ -1,0 +1,95 @@
+<!-- Comments Form  -->
+<div class="vili-comment-form">
+    <form name="commentForm" ng-submit="commentFormSubmit(commentForm.$valid, video, currentUser , new_comment_text)" novalidate>
+        <div class="form-group">
+            <input name="comment" required ng-model="new_comment_text" type="text" class="form-control vili-comment-text-input vili-italic-input" id="comment_input" placeholder="comment...">
+        </div>
+    </form>
+</div>
+
+<!-- Line -->
+<hr>
+
+<!-- Comments  -->
+<div class="vili-comment-block" data-ng-repeat="commentObj in video.comments">
+    <div class="container-fluid">
+        <!-- User info -->
+        <div class="row">
+            <div class="media">
+                <a class="media-left" href="#">
+                    <img width="50px" height="50px" class="img-circle media-object" ng-src="{{commentObj.creator.picture}}" alt="Image"/>
+                </a>
+                <div class="media-body vili-media-body">
+                    <h4 class="media-heading vili-username">{{commentObj.creator.name}}</h4>
+                    <span class="vili-date">{{commentObj.created_at |date:"MMMM d, y 'at' h:mma" | uppercase}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comment -->
+        <div class="row vili-comment-text">
+            <p>
+                {{commentObj.comment_text}}
+            </p>
+
+            <!-- Comment controls -->
+            <div class="vili-comment-controls">
+                <button type="button" class="btn btn-default vili-float-left ">
+                    <i class="fa fa-heart-o vili-glyphicon-color" aria-hidden="true"></i>
+                    LIKE
+                </button>
+                <button type="button" class="btn btn-default vili-float-left ">
+                    <i class="fa fa-share-alt vili-glyphicon-color" aria-hidden="true"></i>
+                    SHARE
+                </button>
+                <button type="button" class="btn btn-default vili-float-left">
+                    <i class="fa fa-commenting-o vili-glyphicon-color" aria-hidden="true"></i>
+                    COMMENT
+                </button>
+                <button type="button" class="btn btn-default vili-float-right vili_report_button ">
+                    <i class="fa fa-flag-o" aria-hidden="true"></i>
+                    REPORT
+                </button>
+            </div>
+        </div>
+
+        <!-- Reply  -->
+        <div class="row vili-comment-actions-block">
+            <!-- Navigation -->
+
+            <div class="navigation">
+                <ul class="nav nav-pills head-menu" id="navbar">
+                    <li>
+                        <a href="#abouttab" data-toggle="pill">COMMENT</a>
+                    </li>
+                    <li>
+                        <a href="#sponsorstab" data-toggle="pill">PHOTO</a>
+                    </li>
+                    <li>
+                        <a href="#feedbacktab" data-toggle="pill">FEEDBACK</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane" id="abouttab">
+                    <div class="arrow-up" style="position:relative;right:-45px;"></div>
+                    <form name="commentReplyForm" ng-submit="commentReplyFormSubmit(commentReplyForm.$valid, video, comment, currentUser ,new_comment_reply_text )" novalidate>
+                        <div class="form-group">
+                            <input name="comment_reply" required ng-model="new_comment_reply_text" type="text" class="form-control vili-comment-text-input vili-italic-input" id="comment_reply_input" placeholder="Reply ...">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="sponsorstab">
+                    <p>NOT GIVEN</p>
+                </div>
+
+                <div class="tab-pane" id="feedbacktab">
+                    <p>NOT GIVEN</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

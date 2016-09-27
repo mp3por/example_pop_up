@@ -1,0 +1,50 @@
+<!-- Needed for bootstrap to work -->
+<div class="container">
+
+    <!-- Open PopUp Button  -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#viliModal">Open PopUp</button>
+
+    <!-- Modal  -->
+    <div class="modal fade" id="viliModal" role="dialog">
+
+        <!-- "modal-dialog" class for proper margin and width settings -->
+        <div class="modal-dialog vili-modal">
+
+            <!-- "modal-content" class tells bootstrap this is the content of the modal-->
+            <div class="modal-content">
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+
+                    <!-- Modal Close button -->
+                    <button type="button" class="vili-dialog-close" data-dismiss="modal">&times;</button>
+
+                    <!-- Input form for YouTube video -->
+                    <div ng-if="!hasUserSuppliedVideo">
+                        <form name="videoForm" ng-submit="videoFormSubmit(videoForm.$valid)" novalidate>
+                            <div class="form-group">
+                                <label for="video-link" class="control-label">Video Link:</label>
+                                <input name="videoUrl" required ng-model="video.url" type="text" class="form-control vili-comment-text-input" id="video-link" placeholder="Enter video link from youtube">
+                                <span ng-show="linkNotFromYoutubeError">Link has to point to a youtube video</span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Details for video and comments -->
+                    <div ng-if="hasUserSuppliedVideo">
+
+                        <!-- Displays video -->
+                        <vili-video video="video" current-user="current_user"></vili-video>
+
+                        <!-- Comments -->
+                        <vili-video-comments video="video" current-user="current_user"></vili-video-comments>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
